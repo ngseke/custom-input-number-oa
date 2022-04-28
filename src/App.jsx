@@ -1,7 +1,13 @@
+import RoomAllocation from './components/RoomAllocation.jsx'
+
 export default function App () {
   return (
     <div>
-      Hello World
+      <RoomAllocation
+        guest={10}
+        room={3}
+        onChange={result => console.log(result)}
+      />
     </div>
   )
 }
