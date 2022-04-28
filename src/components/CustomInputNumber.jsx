@@ -1,4 +1,54 @@
 import { useRef } from 'react'
+import styled from 'styled-components'
+
+const getCommonStyle = ({ disabled }) => ({
+  width: 48,
+  height: 48,
+  margin: 0,
+  borderRadius: 5,
+  opacity: disabled ? 0.5 : 1,
+})
+
+const Button = styled.button((props) => {
+  const color = '#219ebc'
+
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color,
+    backgroundColor: 'transparent',
+    border: `solid 1px ${color}`,
+    fontSize: 40,
+    ...getCommonStyle(props),
+  }
+})
+
+const MinusButton = styled(Button)({
+  '::after': { content: '"-"' },
+})
+
+const AddButton = styled(Button)({
+  '::after': { content: '"+"' },
+})
+
+const Input = styled.input((props) => ({
+  display: 'block',
+  border: 'solid 1px grey',
+  color: 'grey',
+  textAlign: 'center',
+  ...getCommonStyle(props),
+  '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+    appearance: 'none',
+  },
+}))
+
+const Wrapper = styled.div({
+  display: 'flex',
+  '& > * + *': {
+    marginLeft: 8,
+  },
+})
 
 export default function CustomInputNumber ({
   min,
@@ -17,22 +67,20 @@ export default function CustomInputNumber ({
     ref.current?.dispatchEvent(event)
   }
 
-  const decrease = () => {
+  const minus = () => {
     ref.current?.stepDown()
     dispatchSyntheticEvent()
   }
-  const increase = () => {
+  const add = () => {
     ref.current?.stepUp()
     dispatchSyntheticEvent()
   }
 
   return (
-    <div>
-      <button onClick={decrease} disabled={disabled}>
-        -
-      </button>
+    <Wrapper>
+      <MinusButton onClick={minus} disabled={disabled}/>
 
-      <input
+      <Input
         ref={ref}
         type="number"
         min={min}
@@ -44,9 +92,7 @@ export default function CustomInputNumber ({
         onBlur={onBlur}
       />
 
-      <button onClick={increase} disabled={disabled}>
-        +
-      </button>
-    </div>
+      <AddButton onClick={add} disabled={disabled}/>
+    </Wrapper>
   )
 }
