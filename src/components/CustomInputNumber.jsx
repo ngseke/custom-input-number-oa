@@ -76,9 +76,15 @@ export default function CustomInputNumber ({
     dispatchSyntheticEvent()
   }
 
+  const isMinusButtonDisabled = disabled || Number(value) <= Number(min)
+  const isAddButtonDisabled = disabled || Number(value) >= Number(max)
+
   return (
     <Wrapper>
-      <MinusButton onClick={minus} disabled={disabled}/>
+      <MinusButton
+        onClick={minus}
+        disabled={isMinusButtonDisabled}
+      />
 
       <Input
         ref={ref}
@@ -88,11 +94,15 @@ export default function CustomInputNumber ({
         step={step}
         name={name}
         disabled={disabled}
+        value={value}
         onChange={onChange}
         onBlur={onBlur}
       />
 
-      <AddButton onClick={add} disabled={disabled}/>
+      <AddButton
+        onClick={add}
+        disabled={isAddButtonDisabled}
+      />
     </Wrapper>
   )
 }
