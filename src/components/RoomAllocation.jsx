@@ -5,6 +5,7 @@ import useAllocation from '../hooks/useAllocation.js'
 import RoomAllocationItem from './RoomAllocationItem.jsx'
 import Title from './Title.jsx'
 import Divider from './Divider.jsx'
+import Alert from './Alert.jsx'
 
 const Wrapper = styled.div({
   width: 400,
@@ -37,9 +38,8 @@ export default function RoomAllocation ({
 
   return (
     <Wrapper>
-      <Title>
-        住客人數：{guest} 人 / {room} 房
-      </Title>
+      <Title>住客人數：{guest} 人 / {room} 房</Title>
+      {Boolean(remain) && <Alert>尚未分配人數：{remain} 人</Alert>}
       {
         allocations?.map((allocation, key, { length }) => (
           <Fragment key={key}>
