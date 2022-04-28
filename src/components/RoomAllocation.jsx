@@ -34,6 +34,7 @@ export default function RoomAllocation ({
     const newAllocations = [...allocations]
     newAllocations[index] = allocation
     setAllocations(newAllocations)
+    onChange(newAllocations)
   }
 
   return (

@@ -6,7 +6,7 @@ export default function App () {
       <RoomAllocation
         guest={10}
         room={3}
-        onChange={result => console.log(result)}
+        onChange={result => console.log(JSON.stringify(result))}
       />
     </div>
   )
