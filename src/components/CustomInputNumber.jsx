@@ -79,6 +79,15 @@ export default function CustomInputNumber ({
   const isMinusButtonDisabled = disabled || Number(value) <= Number(min)
   const isAddButtonDisabled = disabled || Number(value) >= Number(max)
 
+  const handleChange = (e) => {
+    const value = Number(e.target.value)
+    if (value > max || value < min) {
+      e.preventDefault()
+    } else {
+      onChange(e)
+    }
+  }
+
   return (
     <Wrapper>
       <MinusButton
@@ -95,7 +104,7 @@ export default function CustomInputNumber ({
         name={name}
         disabled={disabled}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
         onBlur={onBlur}
       />
 
