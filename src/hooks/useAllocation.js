@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { useEffect, useState } from 'react'
 
 export default function useAllocation ({ guest, room }) {
@@ -6,7 +7,11 @@ export default function useAllocation ({ guest, room }) {
   useEffect(function init () {
     setAllocations(
       Array.from({ length: room })
-        .map(() => ({ adult: 1, child: 0 }))
+        .map(() => ({
+          id: nanoid(),
+          adult: 1,
+          child: 0,
+        }))
     )
   }, [guest, room])
 

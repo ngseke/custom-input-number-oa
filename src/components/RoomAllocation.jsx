@@ -43,7 +43,7 @@ export default function RoomAllocation ({
       {Boolean(remain) && <Alert>尚未分配人數：{remain} 人</Alert>}
       {
         allocations?.map((allocation, key, { length }) => (
-          <Fragment key={key}>
+          <Fragment key={allocation.id}>
             <RoomAllocationItem
               value={allocation}
               onChange={handleChangeAllocation(key)}
