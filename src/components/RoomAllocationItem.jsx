@@ -21,6 +21,7 @@ export default function RoomAllocationItem ({
   value,
   onChange,
   remain,
+  max = Infinity,
 }) {
   const total = value.adult + value.child
 
@@ -43,7 +44,7 @@ export default function RoomAllocationItem ({
                 value={value.adult}
                 onChange={handleAdultChange}
                 min={1}
-                max={value.adult + remain}
+                max={Math.min(value.adult + remain, max - value.child)}
               />
             }
           />
@@ -56,7 +57,7 @@ export default function RoomAllocationItem ({
                 value={value.child}
                 onChange={handleChildChange}
                 min={0}
-                max={value.child + remain}
+                max={Math.min(value.child + remain, max - value.adult)}
               />
             }
           />

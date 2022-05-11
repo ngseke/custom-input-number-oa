@@ -48,6 +48,7 @@ export default function RoomAllocation ({
               value={allocation}
               onChange={handleChangeAllocation(key)}
               remain={remain}
+              max={4}
             />
             {key !== length - 1 && <Divider/>}
           </Fragment>
